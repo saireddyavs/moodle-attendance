@@ -6,7 +6,7 @@ import connection
 LOGIN_PAGE = "http://lms.rgukt.ac.in/login/index.php"
 BASE_LINK = "http://lms.rgukt.ac.in/mod/attendance/view.php?id="
 HTML_PARSER = "html.parser"
-MAX_ATTEMPTS = 50
+MAX_ATTEMPTS = 10
 subject_links = {
     "MC":   BASE_LINK + "741",
     "BC":   BASE_LINK + "987",
