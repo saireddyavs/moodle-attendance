@@ -128,34 +128,64 @@ def get_login_data(sess, username, password):
     return login_data
 
 
-def mark_attendance(subject, hostid=1):
+# def mark_attendance(subject, hostid=1):
+#     COUNT = 0
+#     # userinfos = connection.get_users(hostid)
+#     for _, username, password, _ in userinfos:
+#
+#         for ATTEMPT in range(MAX_ATTEMPTS):
+#             try:
+#                 COUNT += int(mark_and_log(username, password, subject))
+#                 break
+#             except Exception as e:
+#                 print(
+#                     f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}] {username} - {str(e)}")
+#
+#     if(COUNT > 0):
+#         return f"OK - {COUNT}/{len(userinfos)}"
+#     else:
+#         return f"NOT SUCCESSFUL"
+
+
+def mark_attendance(subject):
     COUNT = 0
-    userinfos = connection.get_users(hostid)
-    for _, username, password, _ in userinfos:
-        for ATTEMPT in range(MAX_ATTEMPTS):
+    # userinfos = connection.get_users(hostid)
+
+
+    for ATTEMPT in range(MAX_ATTEMPTS):
             try:
-                COUNT += int(mark_and_log(username, password, subject))
+                COUNT += int(mark_and_log('B151265', 'B151265@a', subject))
                 break
             except Exception as e:
                 print(
                     f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}] {username} - {str(e)}")
 
     if(COUNT > 0):
-        return f"OK - {COUNT}/{len(userinfos)}"
+        return f"OK SUCCESSFUL"
     else:
         return f"NOT SUCCESSFUL"
 
 
+# def mark_and_log(username, password, subject):
+#     # result | timestamp | ID  | subject | msg
+#     cnx = connection.get_connector()
+#     insert_log_query = connection.get_insert_log_query()
+#     cursor = cnx.cursor()
+#
+#     IS_SUCCESS, log = mark_user(username, password, subject)
+#     cursor.execute(insert_log_query, log)
+#     cnx.commit()
+#
+#     cursor.close()
+#     cnx.close()
+#     return IS_SUCCESS
+
 def mark_and_log(username, password, subject):
     # result | timestamp | ID  | subject | msg
-    cnx = connection.get_connector()
-    insert_log_query = connection.get_insert_log_query()
-    cursor = cnx.cursor()
+
 
     IS_SUCCESS, log = mark_user(username, password, subject)
-    cursor.execute(insert_log_query, log)
-    cnx.commit()
 
-    cursor.close()
-    cnx.close()
+
+
     return IS_SUCCESS
