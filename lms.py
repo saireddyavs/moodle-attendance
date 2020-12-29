@@ -158,7 +158,7 @@ def mark_attendance(subject):
                 break
             except Exception as e:
                 print(
-                    f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}] {username} - {str(e)}")
+                    f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}]  - {str(e)}")
 
     if(COUNT > 0):
         return f"OK SUCCESSFUL"
