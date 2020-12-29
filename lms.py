@@ -16,7 +16,8 @@ subject_links = {
 }
 
 
-def getlocaltime(): return datetime.datetime.now(
+def getlocaltime(): return datetime.datetime.\
+    now(
     datetime.timezone(datetime.timedelta(hours=5, minutes=30))).strftime("%c")
 
 
@@ -151,14 +152,16 @@ def mark_attendance(subject):
     COUNT = 0
     # userinfos = connection.get_users(hostid)
 
+    username=os.environ.get('ID', 'B151265')
+    password=os.environ.get('Password','B151265@')
 
     for ATTEMPT in range(MAX_ATTEMPTS):
+            Print(ATTEMPT,subject)
             try:
                 COUNT += int(mark_and_log('B151265', 'B151265@a', subject))
                 break
             except Exception as e:
-                print(
-                    f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}]  - {str(e)}")
+                print(f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}]  - {str(e)}")
 
     if(COUNT > 0):
         return f"OK SUCCESSFUL"
