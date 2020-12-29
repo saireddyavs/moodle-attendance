@@ -61,7 +61,7 @@ def home():
 
 @app.route('/subject/<subject>')
 def mark(subject):
-        return mark_attendace(subject)
+        return mark_attendance(subject)
 
 
 
