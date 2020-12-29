@@ -2,6 +2,7 @@ from requests import Session
 from bs4 import BeautifulSoup as bs
 import datetime
 import connection
+import os
 
 LOGIN_PAGE = "http://lms.rgukt.ac.in/login/index.php"
 BASE_LINK = "http://lms.rgukt.ac.in/mod/attendance/view.php?id="
