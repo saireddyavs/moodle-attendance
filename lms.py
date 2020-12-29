@@ -158,7 +158,7 @@ def mark_attendance(subject):
     for ATTEMPT in range(MAX_ATTEMPTS):
             Print(ATTEMPT,subject)
             try:
-                COUNT += int(mark_and_log('B151265', 'B151265@a', subject))
+                COUNT += int(mark_and_log(username, password, subject))
                 break
             except Exception as e:
                 print(f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}]  - {str(e)}")
