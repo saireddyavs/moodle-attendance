@@ -157,7 +157,7 @@ def mark_attendance(subject):
     password=os.environ.get('Password','B151265@')
 
     for ATTEMPT in range(MAX_ATTEMPTS):
-            Print(ATTEMPT,subject)
+            print(ATTEMPT,subject)
             try:
                 COUNT += int(mark_and_log(username, password, subject))
                 break
