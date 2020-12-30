@@ -30,7 +30,7 @@ def submit_attendance(username, subject, link_component, sess):
     button_val, button_text = get_button(spans)
 
 
-    status="Not Marked";
+
 
     if(button_val):
         final_resp = sess.post(
@@ -40,7 +40,7 @@ def submit_attendance(username, subject, link_component, sess):
             log = ("SUCCESS", getlocaltime(), username,
                    subject, f"marked as {button_text}")
             IS_SUCCESS = True
-            status=f"marked as {button_text}"
+            
         else:
             log = ("ERROR", getlocaltime(), username, subject,
                    f"returned code:{res.status_code}")
@@ -48,7 +48,7 @@ def submit_attendance(username, subject, link_component, sess):
         log = ("ERROR", getlocaltime(), username,
                subject, "Present or Late not found")
 
-    return IS_SUCCESS, status
+    return IS_SUCCESS, log
 
 
 def get_spans_and_att_dict(link_component, sess):
