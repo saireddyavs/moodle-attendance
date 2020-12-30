@@ -29,6 +29,9 @@ def submit_attendance(username, subject, link_component, sess):
 
     button_val, button_text = get_button(spans)
 
+
+    status="Not Marked";
+
     if(button_val):
         final_resp = sess.post(
             "http://lms.rgukt.ac.in/mod/attendance/attendance.php", get_post_data(sess, att_dict, button_val))
@@ -37,6 +40,7 @@ def submit_attendance(username, subject, link_component, sess):
             log = ("SUCCESS", getlocaltime(), username,
                    subject, f"marked as {button_text}")
             IS_SUCCESS = True
+            status=f"marked as {button_text}"
         else:
             log = ("ERROR", getlocaltime(), username, subject,
                    f"returned code:{res.status_code}")
@@ -44,7 +48,7 @@ def submit_attendance(username, subject, link_component, sess):
         log = ("ERROR", getlocaltime(), username,
                subject, "Present or Late not found")
 
-    return IS_SUCCESS, log
+    return IS_SUCCESS, status
 
 
 def get_spans_and_att_dict(link_component, sess):
@@ -159,15 +163,16 @@ def mark_attendance(subject):
     for ATTEMPT in range(MAX_ATTEMPTS):
             print(ATTEMPT,subject)
             try:
-                COUNT += int(mark_and_log(username, password, subject))
+                c, status= mark_and_log(username, password, subject)
+                COUNT+=int(c)
                 break
             except Exception as e:
                 print(f"EXCEPTION [{ATTEMPT}/{MAX_ATTEMPTS}]  - {str(e)}")
 
     if(COUNT > 0):
-        return f"OK SUCCESSFUL"
+        return f"OK SUCCESSFUL"+str(status)
     else:
-        return f"NOT SUCCESSFUL"
+        return f"NOT SUCCESSFUL"+str(status)
 
 
 # def mark_and_log(username, password, subject):
@@ -188,8 +193,8 @@ def mark_and_log(username, password, subject):
     # result | timestamp | ID  | subject | msg
 
 
-    IS_SUCCESS, log = mark_user(username, password, subject)
+    IS_SUCCESS, status = mark_user(username, password, subject)
 
 
 
-    return IS_SUCCESS
+    return [IS_SUCCESS,status]
