@@ -12,8 +12,9 @@ subject_links = {
     "MC":   BASE_LINK + "741",
     "BC":   BASE_LINK + "987",
     "IS":   BASE_LINK + "939",
-    "QC":   BASE_LINK + "6352",
+    "FOM":   BASE_LINK + "10806",
     "MEFA":   BASE_LINK + "2307",
+
 }
 
 
